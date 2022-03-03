@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class Cyberautomation { 
+	
 
 	private WebDriver driver;
 	
@@ -33,14 +34,14 @@ public class Cyberautomation {
 	void test() throws InterruptedException {
 		
 
-		//driver.manage().window().maximize();
+		driver.manage().window().maximize();
 		
 		driver.get("http://demo.automationtesting.in");
 		driver.findElement(By.xpath("/html/body/div[1]/a[2]/button")).click();
 		
 		Thread.sleep(1000);
 		
-		assertTrue("Título correto", driver.getTitle().contentEquals("Register"));
+		assertTrue("TÃ­tulo correto", driver.getTitle().contentEquals("Register"));
 		
 		//preencher campo nome
 		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[1]/div[1]/input")).clear();
@@ -54,8 +55,8 @@ public class Cyberautomation {
 		
 		Thread.sleep(500);
 		
-		//preencher campo Endereço
-		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div/textarea")).sendKeys("R. Codificação N°:80");
+		//preencher campo EndereÃ§o
+		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[2]/div/textarea")).sendKeys("R. CodificaÃ§Ã£o NÂ°:80");
 		
 		Thread.sleep(500);
 		
@@ -64,7 +65,7 @@ public class Cyberautomation {
 		
 		Thread.sleep(500);
 				
-		//preencher campo Endereço
+		//preencher campo EndereÃ§o
 		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[4]/div/input")).sendKeys("11999999999");
 		
 		Thread.sleep(500);
@@ -87,6 +88,8 @@ public class Cyberautomation {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)");
 		
+		Thread.sleep(1000);
+		
 	//Escolher linguagem
 		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[7]/div/multi-select/div[1]")).click();
 		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[7]/div/multi-select/div[2]/ul/li[29]")).click();
@@ -104,6 +107,7 @@ public class Cyberautomation {
 	//Escolher Continente
 		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[10]/div/span/span[1]/span")).click();
 		driver.findElement(By.xpath("/html/body/span/span/span[1]/input")).sendKeys("united");
+		Thread.sleep(500);
 		driver.findElement(By.xpath("/html/body/span/span/span[2]/ul/li")).click();
 		
 		Thread.sleep(500);
@@ -111,16 +115,16 @@ public class Cyberautomation {
 	//Escolher data nascimento
 		//Ano
 		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[1]/select")).click();
-		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[1]/select/option[80]")).click();
+		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[1]/select/option[75]")).click();
 		Thread.sleep(500);
-		//Mês
+		//MÃªs
 		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[2]/select")).click();
-		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[2]/select/option[4]")).click();
+		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[2]/select/option[3]")).click();
 
 		Thread.sleep(500);
 		//Dia
 		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[3]/select")).click();
-		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[3]/select/option[5]")).click();
+		driver.findElement(By.xpath("/html/body/section/div/div/div[2]/form/div[11]/div[3]/select/option[7]")).click();
 		Thread.sleep(500);
 		
 	//Escrever senha e confirmar senha
@@ -136,7 +140,7 @@ public class Cyberautomation {
 		Thread.sleep(500);
 		
 	//enviar photo
-		driver.findElement(By.xpath("/html/body/section/div/div/div[3]/div[2]/input")).sendKeys("C:\\Users\\Programer\\Desktop\\void.jpg");
+		//driver.findElement(By.xpath("/html/body/section/div/div/div[3]/div[2]/input")).sendKeys("C:\\Users\\Programer\\Desktop\\void.jpg");
 	
 		
 		Thread.sleep(5000);

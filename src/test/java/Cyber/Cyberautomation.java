@@ -2,6 +2,8 @@ package Cyber;
 
 import static org.junit.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,11 +12,13 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Cyberautomation { 
 	
-
 	private WebDriver driver;
 	
 	@BeforeEach
@@ -140,10 +144,85 @@ public class Cyberautomation {
 		Thread.sleep(500);
 		
 	//enviar photo
-		//driver.findElement(By.xpath("/html/body/section/div/div/div[3]/div[2]/input")).sendKeys("C:\\Users\\Programer\\Desktop\\void.jpg");
-	
+		driver.findElement(By.xpath("/html/body/section/div/div/div[3]/div[2]/input")).sendKeys("C:\\Users\\Programer\\Desktop\\void.jpg");
 		
-		Thread.sleep(5000);
+		driver.get("http://demo.automationtesting.in/Frames.html");
+		
+		Thread.sleep(500);
+		
+		//Escrever dentro de uma frame
+		driver.switchTo().frame("SingleFrame");
+	
+		driver.findElement(By.cssSelector("body > section > div > div > div > input[type=text]")).click();
+		driver.findElement(By.cssSelector("body > section > div > div > div > input[type=text]")).sendKeys("Escrita automática");
+		
+		driver.switchTo().parentFrame();
+		
+		Thread.sleep(2000);
+		
+		//Escrever dentro de uma frame que está dentro de outra frame 		
+		driver.findElement(By.xpath("/html/body/section/div[1]/div/div/div/div[1]/div/ul/li[2]/a")).click();
+		
+		driver.switchTo().frame(driver.findElement(By.xpath("//*[@id=\"Multiple\"]/iframe")));
+				
+		driver.switchTo().frame(driver.findElement(By.xpath("/html/body/section/div/div/iframe")));
+		
+		Thread.sleep(500);
+		
+		driver.findElement(By.xpath("/html/body/section/div/div/div/input")).click();
+		driver.findElement(By.xpath("/html/body/section/div/div/div/input")).sendKeys("Escrita automática dois");
+		
+		Thread.sleep(2000);
+		
+		driver.switchTo().parentFrame();
+				
+		driver.get("http://demo.automationtesting.in/Datepicker.html");
+		
+		Thread.sleep(500);
+		
+		//selecionar data disabled
+		driver.findElement(By.id("datepicker1")).click();
+		new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("ui-datepicker")));
+
+		String monthYearVal = driver.findElement(By.className("ui-datepicker-title")).getText();
+		
+		System.out.println(monthYearVal);
+		String month = monthYearVal.split(" ")[0].trim();
+		String year = monthYearVal.split(" ")[1].trim();
+		
+		while(!(month.equals("March") && year.equals("2015"))) {
+			driver.findElement(By.xpath("//*[@id=\"ui-datepicker-div\"]/div/a[1]")).click();
+			monthYearVal = driver.findElement(By.className("ui-datepicker-title")).getText();
+			
+			System.out.println(monthYearVal);
+			month = monthYearVal.split(" ")[0].trim();
+			year = monthYearVal.split(" ")[1].trim();
+		}
+		Thread.sleep(1000);
+		
+		driver.findElement(By.xpath("/html/body/div/table/tbody/tr[1]/td[4]/a")).click();
+		
+		Thread.sleep(500);
+		
+		//selecionar data enabled
+		driver.findElement(By.xpath("/html/body/section/div[1]/div/div/form/div[2]/div[3]/input")).click();
+		driver.findElement(By.xpath("/html/body/section/div[1]/div/div/form/div[2]/div[3]/input")).sendKeys("03/04/2015");
+		driver.findElement(By.xpath("/html/body/section")).click();
+		
+		Thread.sleep(1000);
+		
+		driver.get("http://demo.automationtesting.in/Slider.html");
+		
+		Thread.sleep(500);
+		
+		//rolar scroll direita 50%	
+		WebElement slider = driver.findElement(By.xpath("/html/body/section/div[1]/div/div/div/a"));
+		Thread.sleep(500);
+		Actions action = new Actions(driver);
+		action.dragAndDropBy(slider, 337, 0 ).perform();		
+			
+		Thread.sleep(10000);
+	
 	}
 
 }
